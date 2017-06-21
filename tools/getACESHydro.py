@@ -28,6 +28,11 @@ data = pd.DataFrame(data)
 data.columns = ['time', 'discharge']
 data = data.set_index(pd.to_datetime(data['time']/1000, unit='s'))
 data.drop('time', axis=1, inplace=True)
+data['day'] = data.index.day
+data['month'] = data.index.month
+data['year'] = data.index.year
+data['hour'] = data.index.hour
+data['minute'] = data.index.minute
 
 if not alltime: 
     data = data[(data.index >= startDate) & (data.index <= endDate)].head()
